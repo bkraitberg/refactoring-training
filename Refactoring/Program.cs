@@ -41,6 +41,68 @@ namespace Refactoring
                             {
                                 Console.WriteLine("Login successful!");
                                 loggedIn = true;
+
+                                // Greeting
+                                Console.WriteLine("Welcome " + name + "!");
+
+                                // Show remaining balance
+                                double balance = 0;
+
+                                // Find user index
+                                for (int j = 0; j < validUsers.Length; j++)
+                                {
+                                    if (validUsers[j] == name)
+                                    {
+                                        balance = balances[j];
+                                        Console.WriteLine("Your balance is " + balance);
+                                        break;
+                                    }
+                                }
+
+                                // Show product list
+                                while (true)
+                                {
+                                    Console.WriteLine("What would you like to buy?");
+                                    for (int k = 0; k < products.Length; k++)
+                                    {
+                                        // Get price
+                                        double price = 0.0;
+                                        for (int l = 0; l < prices.Length; l++)
+                                        {
+                                            price = prices[k];
+                                        }
+
+                                        Console.WriteLine(k + 1 + ": " + products[k] + " (" + price +  ")");
+                                    }
+                                    Console.WriteLine("Enter \"Exit\" to exit");
+
+                                    Console.WriteLine("Enter a number:");
+                                    string answer = Console.ReadLine();
+                                    if (answer == "Exit")
+                                    {
+                                        break;
+                                    }
+
+                                    int number = Convert.ToInt32(answer);
+                                    number = number - 1;
+
+                                    Console.WriteLine("You want to buy: " + products[number]);
+                                    Console.WriteLine("Your balance is " + balance);
+                                    Console.WriteLine("Enter Yes to purchase");
+                                    answer = Console.ReadLine();
+
+                                    if (answer == "Yes")
+                                    {
+                                        balance = balance - prices[number];
+                                        Console.WriteLine("You bought " + products[number]);
+                                        Console.WriteLine("Your new balance is " + balance);
+                                    }
+
+                                    if (answer == "Exit")
+                                    {
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
@@ -55,62 +117,6 @@ namespace Refactoring
 
                 }
             }
-
-            // Greeting
-            Console.WriteLine("Welcome " + name + "!");
-            
-            // Show remaining balance
-            double balance = 0;
-
-            // Find user index
-            for (int i = 0; i < validUsers.Length; i++)
-            {
-                if (validUsers[i] == name)
-                {
-                    balance = balances[i];
-                    Console.WriteLine("Your balance is " + balance);
-                    break;
-                }
-            }
-
-            // Show product list
-            while (true)
-            {
-                Console.WriteLine("What would you like to buy?");
-                for (int i = 0; i < products.Length; i++)
-                {
-                    Console.WriteLine(i + 1 + ": " + products[i]);
-                }
-                Console.WriteLine("Enter \"Exit\" to exit");
-
-                Console.WriteLine("Enter a number:");
-                string answer = Console.ReadLine();
-                if (answer == "Exit")
-                {
-                    break;
-                }
-
-                int number = Convert.ToInt32(answer);
-                number = number - 1;
-
-                Console.WriteLine("You want to buy: " + products[number]);
-                Console.WriteLine(products[number] + " costs " + prices[number]);
-                Console.WriteLine("Your balance is " + balance);
-                Console.WriteLine("Enter Yes to purchase");
-                answer = Console.ReadLine();
-
-                if (answer == "Yes")
-                {
-                    balance = balance - prices[number];
-                    Console.WriteLine("Your balance is " + balance);
-                }
-
-                if (answer == "Exit")
-                {
-                    break;
-                }
-            }
-
 
             Console.WriteLine("Press enter to exit");
             Console.ReadLine();

@@ -73,6 +73,44 @@ namespace Refactoring
                 }
             }
 
+            // Show product list
+            while (true)
+            {
+                Console.WriteLine("What would you like to buy?");
+                for (int i = 0; i < products.Length; i++)
+                {
+                    Console.WriteLine(i + 1 + ": " + products[i]);
+                }
+                Console.WriteLine("Enter \"Exit\" to exit");
+
+                Console.WriteLine("Enter a number:");
+                string answer = Console.ReadLine();
+                if (answer == "Exit")
+                {
+                    break;
+                }
+
+                int number = Convert.ToInt32(answer);
+                number = number - 1;
+
+                Console.WriteLine("You want to buy: " + products[number]);
+                Console.WriteLine(products[number] + " costs " + prices[number]);
+                Console.WriteLine("Your balance is " + balance);
+                Console.WriteLine("Enter Yes to purchase");
+                answer = Console.ReadLine();
+
+                if (answer == "Yes")
+                {
+                    balance = balance - prices[number];
+                    Console.WriteLine("Your balance is " + balance);
+                }
+
+                if (answer == "Exit")
+                {
+                    break;
+                }
+            }
+
 
             Console.WriteLine("Press enter to exit");
             Console.ReadLine();

@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace Refactoring
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
+        {
+            StartTusc();
+        }
+
+        private static void StartTusc()
         {
             // Load users from data file
             List<User> users = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText(@"..\..\Data\Users.json"));
@@ -73,7 +78,7 @@ namespace Refactoring
                             if (user.Username == name && user.Password == password)
                             {
                                 balance = user.Balance;
-                                Console.WriteLine("Your balance is " + user.Balance);
+                                Console.WriteLine("Your balance is " + user.Balance.ToString("C"));
                                 Console.WriteLine();
                             }
                         }
@@ -86,7 +91,7 @@ namespace Refactoring
                             for (int i = 0; i < products.Count; i++)
                             {
                                 Product product = products[i];
-                                Console.WriteLine(i + 1 + ": " + product.Name + " (" + product.Price + ")");
+                                Console.WriteLine(i + 1 + ": " + product.Name + " (" + product.Price.ToString("C") + ")");
                             }
                             Console.WriteLine(products.Count + ": Exit");
 
@@ -113,7 +118,7 @@ namespace Refactoring
                                 // Write out new quantities
                                 string json2 = JsonConvert.SerializeObject(products, Formatting.Indented);
                                 File.WriteAllText(@"..\..\Data\Products.json", json);
-                                
+
 
                                 // Prevent console from closing
                                 Console.WriteLine("Press any key to exit");
@@ -123,11 +128,13 @@ namespace Refactoring
                             else
                             {
                                 Console.WriteLine("You want to buy: " + products[number]);
-                                Console.WriteLine("Your balance is " + balance);
+                                Console.WriteLine("Your balance is " + balance.ToString("C"));
 
                                 // Check if user has enough balance
                                 if (balance - products[number].Price < 0)
                                 {
+                                    Console.Beep();
+                                    Console.WriteLine();
                                     Console.WriteLine("You do not have enough money to buy that.");
                                     continue;
                                 }
@@ -135,7 +142,9 @@ namespace Refactoring
                                 // Check if product has any remaining quantity
                                 if (products[number].Quantity <= 0)
                                 {
-                                    Console.WriteLine("Sorry, " + products[number]  + " is out of stock");
+                                    Console.Beep();
+                                    Console.WriteLine();
+                                    Console.WriteLine("Sorry, " + products[number] + " is out of stock");
                                     continue;
                                 }
 
@@ -148,10 +157,12 @@ namespace Refactoring
                                     products[number].Quantity--;
 
                                     Console.WriteLine("You bought " + products[number].Name);
-                                    Console.WriteLine("Your new balance is " + balance);
+                                    Console.WriteLine("Your new balance is " + balance.ToString("C"));
                                 }
-                                else 
+                                else
                                 {
+                                    Console.Beep();
+                                    Console.WriteLine();
                                     Console.WriteLine("Purchase cancelled");
                                 }
                             }

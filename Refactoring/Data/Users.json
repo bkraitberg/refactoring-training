@@ -1,0 +1,27 @@
+﻿[
+  {
+    "Username": "Jason",
+    "Password": "sfa",
+    "Balance": 7.5
+  },
+  {
+    "Username": "David",
+    "Password": "upmc",
+    "Balance": 1.25
+  },
+  {
+    "Username": "Glen",
+    "Password": "hitech",
+    "Balance": 12.75
+  },
+  {
+    "Username": "Rod",
+    "Password": "optx",
+    "Balance": 38.5
+  },
+  {
+    "Username": "Admin",
+    "Password": "admin",
+    "Balance": 1000000.0
+  }
+]

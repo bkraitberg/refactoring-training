@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Refactoring;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Refactoring;
-using Newtonsoft.Json;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace UnitTestProject

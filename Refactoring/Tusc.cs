@@ -187,7 +187,6 @@ namespace Refactoring
                     Console.ReadLine();
                     return;
                 }
-
             }
 
             // Prevent console from closing

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Refactoring
 {
+    [Serializable]
     public class User
     {
         public string Username;

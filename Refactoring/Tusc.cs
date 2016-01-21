@@ -191,8 +191,8 @@ namespace Refactoring
             }
 
             // Prevent console from closing
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
+            Console.WriteLine("Press Enter key to exit");
+            Console.ReadLine();
         }
     }
 }

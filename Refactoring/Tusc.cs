@@ -13,10 +13,10 @@ namespace Refactoring
         public static void Start()
         {
             // Load users from data file
-            List<User> users = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText(@"..\..\Data\Users.json"));
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText(@"..\..\..\Refactoring\Data\Users.json"));
 
             // Load products from data file
-            List<Product> products = JsonConvert.DeserializeObject<List<Product>>(File.ReadAllText(@"..\..\Data\Products.json"));
+            List<Product> products = JsonConvert.DeserializeObject<List<Product>>(File.ReadAllText(@"..\..\..\Refactoring\Data\Products.json"));
 
             // Show app info
             Console.WriteLine("Welcome to TUSC");
@@ -110,16 +110,16 @@ namespace Refactoring
                                     }
                                 }
                                 string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-                                File.WriteAllText(@"..\..\Data\Users.json", json);
+                                File.WriteAllText(@"..\..\..\Refactoring\Data\Users.json", json);
 
                                 // Write out new quantities
                                 string json2 = JsonConvert.SerializeObject(products, Formatting.Indented);
-                                File.WriteAllText(@"..\..\Data\Products.json", json2);
+                                File.WriteAllText(@"..\..\..\Refactoring\Data\Products.json", json2);
 
 
                                 // Prevent console from closing
-                                Console.WriteLine("Press any key to exit");
-                                Console.ReadKey();
+                                Console.WriteLine("Press Enter key to exit");
+                                Console.ReadLine();
                                 return;
                             }
                             else
@@ -172,8 +172,8 @@ namespace Refactoring
                         Console.WriteLine("You entered an invalid password. Please restart TUSC to try again.");
 
                         // Prevent console from closing
-                        Console.WriteLine("Press any key to exit");
-                        Console.ReadKey();
+                        Console.WriteLine("Press Enter key to exit");
+                        Console.ReadLine();
                         return;
                     }
                 }
@@ -183,8 +183,8 @@ namespace Refactoring
                     Console.WriteLine("You entered an unknown user. Please restart TUSC to try again.");
 
                     // Prevent console from closing
-                    Console.WriteLine("Press any key to exit");
-                    Console.ReadKey();
+                    Console.WriteLine("Press Enter key to exit");
+                    Console.ReadLine();
                     return;
                 }
 

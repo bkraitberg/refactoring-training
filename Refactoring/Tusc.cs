@@ -104,21 +104,22 @@ namespace Refactoring
                                     }
                                 }
                                 string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-                                File.WriteAllText(@"..\..\..\Refactoring\Data\Users.json", json);
+                                File.WriteAllText(@"Data\Users.json", json);
 
                                 // Write out new quantities
                                 string json2 = JsonConvert.SerializeObject(products, Formatting.Indented);
-                                File.WriteAllText(@"..\..\..\Refactoring\Data\Products.json", json2);
+                                File.WriteAllText(@"Data\Products.json", json2);
 
 
                                 // Prevent console from closing
+                                Console.WriteLine();
                                 Console.WriteLine("Press Enter key to exit");
                                 Console.ReadLine();
                                 return;
                             }
                             else
                             {
-                                Console.WriteLine("You want to buy: " + products[number]);
+                                Console.WriteLine("You want to buy: " + products[number].Name);
                                 Console.WriteLine("Your balance is " + balance.ToString("C"));
 
                                 // Prompt for quantity
@@ -130,7 +131,6 @@ namespace Refactoring
                                 if (balance - products[number].Price * quantity < 0)
                                 {
                                     Console.Clear();
-                                    Console.Beep();
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine();
                                     Console.WriteLine("You do not have enough money to buy that.");
@@ -142,10 +142,9 @@ namespace Refactoring
                                 if (products[number].Quantity <= quantity)
                                 {
                                     Console.Clear();
-                                    Console.Beep();
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine();
-                                    Console.WriteLine("Sorry, " + products[number] + " is out of stock");
+                                    Console.WriteLine("Sorry, " + products[number].Name + " is out of stock");
                                     Console.ResetColor();
                                     continue;
                                 }
@@ -164,7 +163,6 @@ namespace Refactoring
                                 else
                                 {
                                     Console.Clear();
-                                    Console.Beep();
                                     Console.ForegroundColor = ConsoleColor.Yellow;
                                     Console.WriteLine();
                                     Console.WriteLine("Purchase cancelled");
@@ -183,6 +181,7 @@ namespace Refactoring
                         Console.ResetColor();
 
                         // Prevent console from closing
+                        Console.WriteLine();
                         Console.WriteLine("Press Enter key to exit");
                         Console.ReadLine();
                         return;
@@ -198,6 +197,7 @@ namespace Refactoring
                     Console.ResetColor();
 
                     // Prevent console from closing
+                    Console.WriteLine();
                     Console.WriteLine("Press Enter key to exit");
                     Console.ReadLine();
                     return;
@@ -205,6 +205,7 @@ namespace Refactoring
             }
 
             // Prevent console from closing
+            Console.WriteLine();
             Console.WriteLine("Press Enter key to exit");
             Console.ReadLine();
         }

@@ -129,18 +129,24 @@ namespace Refactoring
                                 // Check if user has enough balance
                                 if (balance - products[number].Price * quantity < 0)
                                 {
+                                    Console.Clear();
                                     Console.Beep();
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine();
                                     Console.WriteLine("You do not have enough money to buy that.");
+                                    Console.ResetColor();
                                     continue;
                                 }
 
                                 // Check if product has any remaining quantity
                                 if (products[number].Quantity <= quantity)
                                 {
+                                    Console.Clear();
                                     Console.Beep();
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine();
                                     Console.WriteLine("Sorry, " + products[number] + " is out of stock");
+                                    Console.ResetColor();
                                     continue;
                                 }
 
@@ -149,14 +155,20 @@ namespace Refactoring
                                     balance = balance - products[number].Price * quantity;
                                     products[number].Quantity = products[number].Quantity - quantity;
 
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Green;
                                     Console.WriteLine("You bought " + quantity + " " + products[number].Name);
                                     Console.WriteLine("Your new balance is " + balance.ToString("C"));
+                                    Console.ResetColor();
                                 }
                                 else
                                 {
+                                    Console.Clear();
                                     Console.Beep();
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
                                     Console.WriteLine();
                                     Console.WriteLine("Purchase cancelled");
+                                    Console.ResetColor();
                                 }
                             }
                         }
@@ -164,7 +176,11 @@ namespace Refactoring
                     else
                     {
                         // TODO: fix so we don't have to restart app on failed login
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine();
                         Console.WriteLine("You entered an invalid password. Please restart TUSC to try again.");
+                        Console.ResetColor();
 
                         // Prevent console from closing
                         Console.WriteLine("Press Enter key to exit");
@@ -175,7 +191,11 @@ namespace Refactoring
                 else
                 {
                     // TODO: fix so we don't have to restart app on failed login
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
                     Console.WriteLine("You entered an unknown user. Please restart TUSC to try again.");
+                    Console.ResetColor();
 
                     // Prevent console from closing
                     Console.WriteLine("Press Enter key to exit");

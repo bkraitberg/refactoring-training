@@ -10,14 +10,8 @@ namespace Refactoring
 {
     public class Tusc
     {
-        public static void Start()
+        public static void Start(List<User> users, List<Product> products)
         {
-            // Load users from data file
-            List<User> users = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText(@"..\..\..\Refactoring\Data\Users.json"));
-
-            // Load products from data file
-            List<Product> products = JsonConvert.DeserializeObject<List<Product>>(File.ReadAllText(@"..\..\..\Refactoring\Data\Products.json"));
-
             // Show app info
             Console.WriteLine("Welcome to TUSC");
             Console.WriteLine("---------------");
@@ -148,19 +142,22 @@ namespace Refactoring
                                 Console.WriteLine("Enter Yes to purchase");
                                 answer = Console.ReadLine();
 
-                                if (answer == "Yes")
+                                switch (answer.ToLower())
                                 {
-                                    balance = balance - products[number].Price;
-                                    products[number].Quantity--;
+                                    case "yes":
+                                    case "y":
+                                        balance = balance - products[number].Price;
+                                        products[number].Quantity--;
 
-                                    Console.WriteLine("You bought " + products[number].Name);
-                                    Console.WriteLine("Your new balance is " + balance.ToString("C"));
-                                }
-                                else
-                                {
-                                    Console.Beep();
-                                    Console.WriteLine();
-                                    Console.WriteLine("Purchase cancelled");
+                                        Console.WriteLine("You bought " + products[number].Name);
+                                        Console.WriteLine("Your new balance is " + balance.ToString("C"));
+                                        break;
+
+                                    default:
+                                        Console.Beep();
+                                        Console.WriteLine();
+                                        Console.WriteLine("Purchase cancelled");
+                                        break;
                                 }
                             }
 

@@ -1,37 +1,37 @@
-﻿[
-    {
-        "Name": "Chips",
-        "Price": 1.49,
-        "Quantity": 50
-    },
-    {
-        "Name": "Cookies",
-        "Price":  1.00,
-        "Quantity": 100
-    },
-    {
-        "Name": "Gum",
-        "Price":  0.85,
-        "Quantity": 50
-    },
-    {
-        "Name": "Pop",
-        "Price":  0.75,
-        "Quantity": 75
-    },
-    {
-        "Name": "Candy",
-        "Price":  0.85,
-        "Quantity": 30
-    },
-    {
-        "Name": "Chocolate Bars",
-        "Price":  1.25,
-        "Quantity": 25
-    },
-    {
-        "Name": "Nuts",
-        "Price":  1.00,
-        "Quantity": 1
-    }
+[
+  {
+    "Name": "Chips",
+    "Price": 1.49,
+    "Quantity": 50
+  },
+  {
+    "Name": "Cookies",
+    "Price": 1.0,
+    "Quantity": 100
+  },
+  {
+    "Name": "Gum",
+    "Price": 0.85,
+    "Quantity": 50
+  },
+  {
+    "Name": "Pop",
+    "Price": 0.75,
+    "Quantity": 75
+  },
+  {
+    "Name": "Candy",
+    "Price": 0.85,
+    "Quantity": 30
+  },
+  {
+    "Name": "Chocolate Bars",
+    "Price": 1.25,
+    "Quantity": 25
+  },
+  {
+    "Name": "Nuts",
+    "Price": 1.0,
+    "Quantity": 1
+  }
 ]

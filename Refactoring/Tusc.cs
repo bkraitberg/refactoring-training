@@ -15,16 +15,17 @@ namespace Refactoring
             // Show app info
             Console.WriteLine("Welcome to TUSC");
             Console.WriteLine("---------------");
-            Console.WriteLine();
 
             // Login
+            Login:
             bool loggedIn = false;
+            Console.WriteLine();
             Console.WriteLine("Enter Username:");
             string name = Console.ReadLine();
 
             // Validate Username
             bool validUser = false;
-            if (name.Length > 0)
+            if (!string.IsNullOrEmpty(name))
             {
                 for (int i = 0; i < users.Count; i++)
                 {
@@ -53,14 +54,15 @@ namespace Refactoring
 
                     if (validPassword == true)
                     {
-                        Console.WriteLine();
-                        Console.WriteLine("Login successful!");
                         loggedIn = true;
 
-                        // Write Greeting
+                        // Show welcome message
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine();
-                        Console.WriteLine("Welcome " + name + "!");
-
+                        Console.WriteLine("Login successful! Welcome " + name + "!");
+                        Console.ResetColor();
+                        
                         // Show remaining balance
                         double balance = 0;
                         for (int i = 0; i < users.Count; i++)
@@ -119,6 +121,7 @@ namespace Refactoring
                             }
                             else
                             {
+                                Console.WriteLine();
                                 Console.WriteLine("You want to buy: " + products[number].Name);
                                 Console.WriteLine("Your balance is " + balance.ToString("C"));
 
@@ -127,7 +130,7 @@ namespace Refactoring
                                 answer = Console.ReadLine();
                                 int quantity = Convert.ToInt32(answer);
 
-                                // Check if user has enough balance
+                                // Check if quantity is less than 0
                                 if (balance - products[number].Price * quantity < 0)
                                 {
                                     Console.Clear();
@@ -138,7 +141,7 @@ namespace Refactoring
                                     continue;
                                 }
 
-                                // Check if product has any remaining quantity
+                                // Check if user has enough balance
                                 if (products[number].Quantity <= quantity)
                                 {
                                     Console.Clear();
@@ -149,6 +152,7 @@ namespace Refactoring
                                     continue;
                                 }
 
+                                // If quantity is greater than zero
                                 if (quantity > 0)
                                 {
                                     balance = balance - products[number].Price * quantity;
@@ -173,34 +177,26 @@ namespace Refactoring
                     }
                     else
                     {
-                        // TODO: fix so we don't have to restart app on failed login
+                        // Invalid Password
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine();
-                        Console.WriteLine("You entered an invalid password. Please restart TUSC to try again.");
+                        Console.WriteLine("You entered an invalid password.");
                         Console.ResetColor();
 
-                        // Prevent console from closing
-                        Console.WriteLine();
-                        Console.WriteLine("Press Enter key to exit");
-                        Console.ReadLine();
-                        return;
+                        goto Login;
                     }
                 }
                 else
                 {
-                    // TODO: fix so we don't have to restart app on failed login
+                    // Invalid User
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
-                    Console.WriteLine("You entered an unknown user. Please restart TUSC to try again.");
+                    Console.WriteLine("You entered an invalid user.");
                     Console.ResetColor();
 
-                    // Prevent console from closing
-                    Console.WriteLine();
-                    Console.WriteLine("Press Enter key to exit");
-                    Console.ReadLine();
-                    return;
+                    goto Login;
                 }
             }
 

@@ -89,7 +89,7 @@ namespace UnitTestProject
                     Tusc.Start(users, products);
                 }
 
-                Assert.IsTrue(writer.ToString().Contains("You entered an unknown user"));
+                Assert.IsTrue(writer.ToString().Contains("You entered an invalid user"));
             }
         }
 

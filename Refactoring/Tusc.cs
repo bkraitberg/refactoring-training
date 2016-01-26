@@ -121,8 +121,13 @@ namespace Refactoring
                                 Console.WriteLine("You want to buy: " + products[number]);
                                 Console.WriteLine("Your balance is " + balance.ToString("C"));
 
+                                // Prompt for quantity
+                                Console.WriteLine("Enter amount to purchase:");
+                                answer = Console.ReadLine();
+                                int quantity = Convert.ToInt32(answer);
+
                                 // Check if user has enough balance
-                                if (balance - products[number].Price < 0)
+                                if (balance - products[number].Price * quantity < 0)
                                 {
                                     Console.Beep();
                                     Console.WriteLine();
@@ -131,7 +136,7 @@ namespace Refactoring
                                 }
 
                                 // Check if product has any remaining quantity
-                                if (products[number].Quantity <= 0)
+                                if (products[number].Quantity <= quantity)
                                 {
                                     Console.Beep();
                                     Console.WriteLine();
@@ -139,28 +144,21 @@ namespace Refactoring
                                     continue;
                                 }
 
-                                Console.WriteLine("Enter Yes to purchase");
-                                answer = Console.ReadLine();
-
-                                switch (answer.ToLower())
+                                if (quantity > 0)
                                 {
-                                    case "yes":
-                                    case "y":
-                                        balance = balance - products[number].Price;
-                                        products[number].Quantity--;
+                                    balance = balance - products[number].Price * quantity;
+                                    products[number].Quantity = products[number].Quantity - quantity;
 
-                                        Console.WriteLine("You bought " + products[number].Name);
-                                        Console.WriteLine("Your new balance is " + balance.ToString("C"));
-                                        break;
-
-                                    default:
-                                        Console.Beep();
-                                        Console.WriteLine();
-                                        Console.WriteLine("Purchase cancelled");
-                                        break;
+                                    Console.WriteLine("You bought " + quantity + " " + products[number].Name);
+                                    Console.WriteLine("Your new balance is " + balance.ToString("C"));
+                                }
+                                else
+                                {
+                                    Console.Beep();
+                                    Console.WriteLine();
+                                    Console.WriteLine("Purchase cancelled");
                                 }
                             }
-
                         }
                     }
                     else

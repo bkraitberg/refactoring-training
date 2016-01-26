@@ -52,6 +52,7 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".travis.yml" />
     <None Include="App.config" />
     <None Include="Data\Products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

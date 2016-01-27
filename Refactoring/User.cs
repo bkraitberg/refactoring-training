@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,11 @@ namespace Refactoring
     [Serializable]
     public class User
     {
-        public string Username;
-        public string Password;
-        public double Balance;
+        [JsonProperty("Username")]
+        public string Name;
+        [JsonProperty("Password")]
+        public string Pwd;
+        [JsonProperty("Balance")]
+        public double Bal;
     }
 }

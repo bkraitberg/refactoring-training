@@ -151,7 +151,7 @@ namespace UnitTestProject
         {
             // Update data file
             List<User> tempUsers = DeepCopy<List<User>>(originalUsers);
-            tempUsers.Where(u => u.Username == "Jason").Single().Balance = 0.0;
+            tempUsers.Where(u => u.Name == "Jason").Single().Bal = 0.0;
 
             using (var writer = new StringWriter())
             {
@@ -173,7 +173,7 @@ namespace UnitTestProject
         {
             // Update data file
             List<Product> tempProducts = DeepCopy<List<Product>>(originalProducts);
-            tempProducts.Where(u => u.Name == "Chips").Single().Quantity = 0;
+            tempProducts.Where(u => u.Name == "Chips").Single().Qty = 0;
 
             using (var writer = new StringWriter())
             {

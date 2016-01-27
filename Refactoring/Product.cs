@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,11 @@ namespace Refactoring
     [Serializable]
     public class Product
     {
+        [JsonProperty("Name")]
         public string Name;
+        [JsonProperty("Price")]
         public double Price;
-        public int Quantity;
+        [JsonProperty("Quantity")]
+        public int Qty;
     }
 }

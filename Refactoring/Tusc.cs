@@ -10,49 +10,57 @@ namespace Refactoring
 {
     public class Tusc
     {
-        public static void Start(List<User> users, List<Product> products)
+        public static void Start(List<User> usrs, List<Product> prods)
         {
-            // Show app info
+            // Write welcome message
             Console.WriteLine("Welcome to TUSC");
             Console.WriteLine("---------------");
 
             // Login
             Login:
-            bool loggedIn = false;
+            bool loggedIn = false; // Is logged in?
+
+            // Prompt for user input
             Console.WriteLine();
             Console.WriteLine("Enter Username:");
             string name = Console.ReadLine();
 
             // Validate Username
-            bool validUser = false;
+            bool valUsr = false; // Is valid user?
             if (!string.IsNullOrEmpty(name))
             {
-                for (int i = 0; i < users.Count; i++)
+                for (int i = 0; i < usrs.Count; i++)
                 {
-                    User user = users[i];
-                    if (user.Username == name)
+                    User user = usrs[i];
+                    // Check that name matches
+                    if (user.Name == name)
                     {
-                        validUser = true;
+                        valUsr = true;
                     }
                 }
 
-                if (validUser)
+                // if valid user
+                if (valUsr)
                 {
+                    // Prompt for user input
                     Console.WriteLine("Enter Password:");
-                    string password = Console.ReadLine();
+                    string pwd = Console.ReadLine();
 
                     // Validate Password
-                    bool validPassword = false;
-                    for (int i = 0; i < users.Count; i++)
+                    bool valPwd = false; // Is valid password?
+                    for (int i = 0; i < usrs.Count; i++)
                     {
-                        User user = users[i];
-                        if (user.Username == name && user.Password == password)
+                        User user = usrs[i];
+
+                        // Check that name and password match
+                        if (user.Name == name && user.Pwd == pwd)
                         {
-                            validPassword = true;
+                            valPwd = true;
                         }
                     }
 
-                    if (validPassword == true)
+                    // if valid password
+                    if (valPwd == true)
                     {
                         loggedIn = true;
 
@@ -64,52 +72,60 @@ namespace Refactoring
                         Console.ResetColor();
                         
                         // Show remaining balance
-                        double balance = 0;
-                        for (int i = 0; i < users.Count; i++)
+                        double bal = 0;
+                        for (int i = 0; i < usrs.Count; i++)
                         {
-                            User user = users[i];
-                            if (user.Username == name && user.Password == password)
+                            User usr = usrs[i];
+
+                            // Check that name and password match
+                            if (usr.Name == name && usr.Pwd == pwd)
                             {
-                                balance = user.Balance;
+                                bal = usr.Bal;
+
+                                // Show balance 
                                 Console.WriteLine();
-                                Console.WriteLine("Your balance is " + user.Balance.ToString("C"));
+                                Console.WriteLine("Your balance is " + usr.Bal.ToString("C"));
                             }
                         }
 
                         // Show product list
                         while (true)
                         {
+                            // Prompt for user input
                             Console.WriteLine();
                             Console.WriteLine("What would you like to buy?");
-                            for (int i = 0; i < products.Count; i++)
+                            for (int i = 0; i < prods.Count; i++)
                             {
-                                Product product = products[i];
-                                Console.WriteLine(i + 1 + ": " + product.Name + " (" + product.Price.ToString("C") + ")");
+                                Product prod = prods[i];
+                                Console.WriteLine(i + 1 + ": " + prod.Name + " (" + prod.Price.ToString("C") + ")");
                             }
-                            Console.WriteLine(products.Count + 1 + ": Exit");
+                            Console.WriteLine(prods.Count + 1 + ": Exit");
 
+                            // Prompt for user input
                             Console.WriteLine("Enter a number:");
                             string answer = Console.ReadLine();
-                            int number = Convert.ToInt32(answer);
-                            number = number - 1;
+                            int num = Convert.ToInt32(answer);
+                            num = num - 1; // Subtract 1 from number
 
-                            if (number == products.Count)
+                            // Check if user entered number that equals product count
+                            if (num == prods.Count)
                             {
-                                // User selected Exit
-
-                                // Write out new balance
-                                foreach (var user in users)
+                                // Update balance
+                                foreach (var usr in usrs)
                                 {
-                                    if (user.Username == name && user.Password == password)
+                                    // Check that name and password match
+                                    if (usr.Name == name && usr.Pwd == pwd)
                                     {
-                                        user.Balance = balance;
+                                        usr.Bal = bal;
                                     }
                                 }
-                                string json = JsonConvert.SerializeObject(users, Formatting.Indented);
+
+                                // Write out new balance
+                                string json = JsonConvert.SerializeObject(usrs, Formatting.Indented);
                                 File.WriteAllText(@"Data\Users.json", json);
 
                                 // Write out new quantities
-                                string json2 = JsonConvert.SerializeObject(products, Formatting.Indented);
+                                string json2 = JsonConvert.SerializeObject(prods, Formatting.Indented);
                                 File.WriteAllText(@"Data\Products.json", json2);
 
 
@@ -122,16 +138,16 @@ namespace Refactoring
                             else
                             {
                                 Console.WriteLine();
-                                Console.WriteLine("You want to buy: " + products[number].Name);
-                                Console.WriteLine("Your balance is " + balance.ToString("C"));
+                                Console.WriteLine("You want to buy: " + prods[num].Name);
+                                Console.WriteLine("Your balance is " + bal.ToString("C"));
 
-                                // Prompt for quantity
+                                // Prompt for user input
                                 Console.WriteLine("Enter amount to purchase:");
                                 answer = Console.ReadLine();
-                                int quantity = Convert.ToInt32(answer);
+                                int qty = Convert.ToInt32(answer);
 
-                                // Check if quantity is less than 0
-                                if (balance - products[number].Price * quantity < 0)
+                                // Check if balance - quantity * price is less than 0
+                                if (bal - prods[num].Price * qty < 0)
                                 {
                                     Console.Clear();
                                     Console.ForegroundColor = ConsoleColor.Red;
@@ -141,31 +157,35 @@ namespace Refactoring
                                     continue;
                                 }
 
-                                // Check if user has enough balance
-                                if (products[number].Quantity <= quantity)
+                                // Check if quantity is less than quantity
+                                if (prods[num].Qty <= qty)
                                 {
                                     Console.Clear();
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine();
-                                    Console.WriteLine("Sorry, " + products[number].Name + " is out of stock");
+                                    Console.WriteLine("Sorry, " + prods[num].Name + " is out of stock");
                                     Console.ResetColor();
                                     continue;
                                 }
 
-                                // If quantity is greater than zero
-                                if (quantity > 0)
+                                // Check if quantity is greater than zero
+                                if (qty > 0)
                                 {
-                                    balance = balance - products[number].Price * quantity;
-                                    products[number].Quantity = products[number].Quantity - quantity;
+                                    // Balance = Balance - Price * Quantity
+                                    bal = bal - prods[num].Price * qty;
+
+                                    // Quanity = Quantity - Quantity
+                                    prods[num].Qty = prods[num].Qty - qty;
 
                                     Console.Clear();
                                     Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine("You bought " + quantity + " " + products[number].Name);
-                                    Console.WriteLine("Your new balance is " + balance.ToString("C"));
+                                    Console.WriteLine("You bought " + qty + " " + prods[num].Name);
+                                    Console.WriteLine("Your new balance is " + bal.ToString("C"));
                                     Console.ResetColor();
                                 }
                                 else
                                 {
+                                    // Quantity is less than zero
                                     Console.Clear();
                                     Console.ForegroundColor = ConsoleColor.Yellow;
                                     Console.WriteLine();

@@ -21,11 +21,11 @@ namespace UnitTestProject
         public void Test_Initialize()
         {
             // Load users from data file
-            originalUsers = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText(@"Data\Users.json"));
+            originalUsers = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText(@"Data/Users.json"));
             users = DeepCopy<List<User>>(originalUsers);
 
             // Load products from data file
-            originalProducts = JsonConvert.DeserializeObject<List<Product>>(File.ReadAllText(@"Data\Products.json"));
+            originalProducts = JsonConvert.DeserializeObject<List<Product>>(File.ReadAllText(@"Data/Products.json"));
             products = DeepCopy<List<Product>>(originalProducts);
         }
 
@@ -34,12 +34,12 @@ namespace UnitTestProject
         {
             // Restore users
             string json = JsonConvert.SerializeObject(originalUsers, Formatting.Indented);
-            File.WriteAllText(@"Data\Users.json", json);
+            File.WriteAllText(@"Data/Users.json", json);
             users = DeepCopy<List<User>>(originalUsers);
 
             // Restore products
             string json2 = JsonConvert.SerializeObject(originalProducts, Formatting.Indented);
-            File.WriteAllText(@"Data\Products.json", json2);
+            File.WriteAllText(@"Data/Products.json", json2);
             products = DeepCopy<List<Product>>(originalProducts);
         }
 

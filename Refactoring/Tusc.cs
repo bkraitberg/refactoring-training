@@ -123,11 +123,11 @@ namespace Refactoring
 
                                 // Write out new balance
                                 string json = JsonConvert.SerializeObject(usrs, Formatting.Indented);
-                                File.WriteAllText(@"Data\Users.json", json);
+                                File.WriteAllText(@"Data/Users.json", json);
 
                                 // Write out new quantities
                                 string json2 = JsonConvert.SerializeObject(prods, Formatting.Indented);
-                                File.WriteAllText(@"Data\Products.json", json2);
+                                File.WriteAllText(@"Data/Products.json", json2);
 
 
                                 // Prevent console from closing

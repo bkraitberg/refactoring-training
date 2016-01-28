@@ -29,7 +29,7 @@ namespace Refactoring
             bool valUsr = false; // Is valid user?
             if (!string.IsNullOrEmpty(name))
             {
-                for (int i = 0; i < usrs.Count; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     User user = usrs[i];
                     // Check that name matches
@@ -48,7 +48,7 @@ namespace Refactoring
 
                     // Validate Password
                     bool valPwd = false; // Is valid password?
-                    for (int i = 0; i < usrs.Count; i++)
+                    for (int i = 0; i < 5; i++)
                     {
                         User user = usrs[i];
 
@@ -73,7 +73,7 @@ namespace Refactoring
                         
                         // Show remaining balance
                         double bal = 0;
-                        for (int i = 0; i < usrs.Count; i++)
+                        for (int i = 0; i < 5; i++)
                         {
                             User usr = usrs[i];
 
@@ -94,7 +94,7 @@ namespace Refactoring
                             // Prompt for user input
                             Console.WriteLine();
                             Console.WriteLine("What would you like to buy?");
-                            for (int i = 0; i < prods.Count; i++)
+                            for (int i = 0; i < 7; i++)
                             {
                                 Product prod = prods[i];
                                 Console.WriteLine(i + 1 + ": " + prod.Name + " (" + prod.Price.ToString("C") + ")");
@@ -108,7 +108,7 @@ namespace Refactoring
                             num = num - 1; // Subtract 1 from number
 
                             // Check if user entered number that equals product count
-                            if (num == prods.Count)
+                            if (num == 7)
                             {
                                 // Update balance
                                 foreach (var usr in usrs)

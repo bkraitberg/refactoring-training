@@ -105,7 +105,8 @@ namespace Refactoring
                             Console.WriteLine("Enter a number:");
                             string answer = Console.ReadLine();
                             int num = Convert.ToInt32(answer);
-                            num = num - 1; // Subtract 1 from number
+                            num = num - 1; /* Subtract 1 from number
+                            num = num + 1 // Add 1 to number */
 
                             // Check if user entered number that equals product count
                             if (num == 7)

@@ -109,7 +109,7 @@ namespace Refactoring
                             num = num + 1 // Add 1 to number */
 
                             // Check if user entered number that equals product count
-                            if (num == 7)
+                            if (num == prods.Count)
                             {
                                 // Update balance
                                 foreach (var usr in usrs)
